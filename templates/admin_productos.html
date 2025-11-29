@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Administrar Productos{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">📦 Lista de Productos</h2>
+    <a href="{{ url_for('nuevo_producto') }}" class="btn btn-success mb-3">➕ Nuevo Producto</a>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Categoría</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in productos %}
+            <tr>
+                <td>{{ p.id_producto }}</td>
+                <td>{{ p.nom_producto }}</td>
+                <td>{{ p.descripcion }}</td>
+                <td>{{ p.precio_producto }}</td>
+                <td>{{ p.stok }}</td>
+                <td>
+                    {% for c in categorias %}
+                        {% if c.id_categoria == p.id_categoria %}
+                            {{ c.nom_categoria }}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href="{{ url_for('editar_producto', id=p.id_producto) }}" class="btn btn-warning btn-sm">✏️ Editar</a>
+                    <form action="{{ url_for('eliminar_producto', id=p.id_producto) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm">🗑️ Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+

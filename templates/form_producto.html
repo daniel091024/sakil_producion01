@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}{{ accion }} Producto{% endblock %}
+
+{% block content %}
+<div class="card shadow-lg p-4 col-md-6 mx-auto">
+    <h2 class="text-center mb-4">{{ accion }} Producto</h2>
+    <form method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label class="form-label">Nombre del Producto</label>
+            <input type="text" name="nom_producto" class="form-control" 
+                   value="{{ producto.nom_producto if producto else '' }}" required>
+        </div>
+    
+        <div class="mb-3">
+            <label class="form-label">Descripción</label>
+            <textarea name="descripcion" class="form-control" rows="3" required>{{ producto.descripcion if producto else '' }}</textarea>
+        </div>
+    
+        <div class="mb-3">
+            <label class="form-label">Precio</label>
+            <input type="number" step="0.01" name="precio_producto" class="form-control" 
+                   value="{{ producto.precio_producto if producto else '' }}" required>
+        </div>
+    
+        <div class="mb-3">
+            <label class="form-label">Stock</label>
+            <input type="number" name="stok" class="form-control" 
+                   value="{{ producto.stok if producto else '' }}" required>
+        </div>
+    
+        <div class="mb-3">
+            <label class="form-label">Categoría</label>
+            <select name="id_categoria" class="form-control" required>
+                {% for cat in categorias %}
+                    <option value="{{ cat.id_categoria }}" 
+                            {% if producto and producto.id_categoria == cat.id_categoria %}selected{% endif %}>
+                        {{ cat.nom_categoria }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+    
+        <div class="mb-3">
+            <label class="form-label">Foto</label>
+            <input type="file" name="foto" class="form-control">
+            {% if producto and producto.foto %}
+                <img src="{{ url_for('static', filename='img/' ~ producto.foto) }}" 
+                     class="mt-2 img-thumbnail" style="max-height: 120px;">
+            {% endif %}
+        </div>
+    
+        <button type="submit" class="btn btn-success w-100">{{ accion }}</button>
+    </form>
+
+    <div class="text-center mt-3">
+        <a href="{{ url_for('admin_productos') }}" class="btn btn-secondary">⬅️ Volver</a>
+    </div>
+</div>
+{% endblock %}

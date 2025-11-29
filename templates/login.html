@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="card shadow-lg p-4 col-md-6 mx-auto">
+    <h2 class="text-center mb-4">Iniciar Sesión</h2>
+
+    <!-- Mostrar errores de login -->
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+        <a href="{{ url_for('forgot_password') }}">¿Olvidaste tu contraseña?</a>
+    {% endif %}
+
+
+    <form method="POST">
+        <div class="mb-3">
+            <label class="form-label">Correo Electrónico</label>
+            <input type="email" name="email" class="form-control" required>
+        </div>
+        
+    
+        <div class="mb-3">
+            <label class="form-label">Contraseña</label>
+            <input type="password" name="password" class="form-control" required>
+        </div>
+    
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" name="remember" id="remember">
+            <label class="form-check-label" for="remember">
+                Recordarme
+            </label>
+        </div>
+    
+        <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+    </form>
+    
+    <div class="text-center mt-3">
+        <a href="{{ url_for('forgot_password') }}">¿Olvidaste tu contraseña?</a>
+    </div>
+    
+    <div class="text-center mt-2">
+        <span>¿No tienes cuenta?</span>
+        <a href="{{ url_for('registro') }}" class="fw-bold">Regístrate aquí</a>
+    </div>
+</div>
+{% endblock %}

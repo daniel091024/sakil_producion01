@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Registro{% endblock %}
+
+{% block content %}
+    <div class="card shadow-lg p-4 col-md-6 mx-auto">
+        <h2 class="text-center mb-4">Registro de Usuario</h2>
+
+        <form method="POST">
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" name="nombre" class="form-control" required>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">Apellido</label>
+                <input type="text" name="apellido" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="ciudad" class="form-label">Ciudad</label>
+                <input type="text" class="form-control" id="ciudad" name="ciudad" required>
+              </div>
+              
+              <div class="mb-3">
+                <label for="direccion" class="form-label">Dirección</label>
+                <input type="text" class="form-control" id="direccion" name="direccion" required>
+              </div>
+              
+              <div class="mb-3">
+                <label for="telefono" class="form-label">Teléfono</label>
+                <input type="text" class="form-control" id="telefono" name="telefono" required>
+              </div>
+              
+              <div class="mb-3">
+                <label for="fecha_nac" class="form-label">Fecha de Nacimiento</label>
+                <input type="date" class="form-control" id="fecha_nac" name="fecha_nac" required>
+              </div>
+              
+            
+            <div class="mb-3">
+                <label class="form-label">Correo Electrónico</label>
+                <input type="email" name="email" class="form-control" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+              </div>
+              
+            
+
+            <button type="submit" class="btn btn-success w-100">Registrar</button>
+        </form>
+    </div>
+{% endblock %}
