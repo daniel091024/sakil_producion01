@@ -502,9 +502,8 @@ def init_db():
         except Exception as e:
             print(f"❌ Error al inicializar la base de datos: {e}")
 
-# NO inicializar DB en producción (Render)
-if os.environ.get("FLASK_ENV") == "development":
-    init_db()
+# Inicializar DB siempre (crear tablas si no existen)
+init_db()
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
