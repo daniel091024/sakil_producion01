@@ -1,0 +1,27 @@
+# Ejemplo de configuración para Render. Reemplaza los valores sensibles desde el dashboard de Render, no los dejes en el repositorio.
+services:
+  - type: web
+    name: daniel2-web
+    runtime: python
+    pythonVersion: "3.11.4"
+    region: oregon
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn "app:app" --bind 0.0.0.0:$PORT
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: SECRET_KEY
+        # Cambia este valor en el dashboard de Render
+        value: "<REEMPLAZAR_SECRET_KEY_EN_DASHBOARD>"
+      - key: DATABASE_URL
+        # Conecta aquí tu base de datos de Render (ej: postgres://...)
+        value: "<REEMPLAZAR_DATABASE_URL_EN_DASHBOARD>"
+      - key: MAIL_SERVER
+        value: "smtp.gmail.com"
+      - key: MAIL_PORT
+        value: "587"
+      - key: MAIL_USERNAME
+        value: "<REEMPLAZAR_MAIL_USERNAME>"
+      - key: MAIL_PASSWORD
+        value: "<REEMPLAZAR_MAIL_PASSWORD>"
